@@ -26,7 +26,6 @@ def import_students_from_txt(file_path):
         print("Błąd podczas odczytu pliku. Upewnij się, że plik jest poprawnie sformatowany.")
     return students
 
-
 def export_students_to_txt(students, file_path):
     if not students:
         print("Brak danych do zapisania.")
@@ -57,6 +56,29 @@ def add_student(students):
     })
 
 add_student(students)
+
+# zad 3
+def mark_attendance(attendance_records, student_name, date, present):
+    if date not in attendance_records:
+        attendance_records[date] = {}
+    
+    attendance_records[date][student_name] = present
+    print(f"Obecność dla {student_name} na {date} została zaznaczona jako {'obecny' if present else 'nieobecny'}.")
+
+def edit_attendance(attendance_records, student_name, date, present):
+    if date in attendance_records and student_name in attendance_records[date]:
+        attendance_records[date][student_name] = present
+        print(f"Obecność dla {student_name} na {date} została edytowana na {'obecny' if present else 'nieobecny'}.")
+    else:
+        print(f"Brak zapisu obecności dla {student_name} na {date}. Aby edytować, najpierw musisz zaznaczyć obecność.")
+
+def check_attendance(attendance_records, student_name, date):
+    if date in attendance_records and student_name in attendance_records[date]:
+        return attendance_records[date][student_name]
+    else:
+        print(f"Brak zapisu obecności dla {student_name} na {date}.")
+        return None
+
 print("\nPo dodaniu nowego studenta:")
 for student in students:
     print(student)
