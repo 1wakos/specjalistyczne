@@ -36,10 +36,7 @@ def export_students_to_txt(students, file_path):
             file.write(f"{student['id']}, {student['name']}, {student['presence']}\n")
     print(f"Zaktualizowana lista obecności została zapisana w {file_path}")
 
-
 students = import_students_from_txt("students.txt")
-
-
 
 if students:
     students[0]["presence"] = "Obecny"
@@ -47,3 +44,20 @@ if students:
     export_students_to_txt(students, "updated_students.txt")
 else:
     print("Nie można edytować obecności, ponieważ lista studentów jest pusta.")
+
+def add_student(students):
+    student_id = input("Podaj ID studenta: ")
+    name = input("Podaj imię studenta: ")
+    surname = input("Podaj nazwisko studenta: ")
+    students.append({
+        "ID": student_id,
+        "Imię": name,
+        "Nazwisko": surname,
+        "Obecność": "Nieobecny"
+    })
+
+add_student(students)
+print("\nPo dodaniu nowego studenta:")
+for student in students:
+    print(student)
+export_students('obecnosc_zaktualizowana.csv', students)
