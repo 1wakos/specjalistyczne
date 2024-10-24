@@ -60,4 +60,3 @@ add_student(students)
 print("\nPo dodaniu nowego studenta:")
 for student in students:
     print(student)
-export_students('obecnosc_zaktualizowana.csv', students)
